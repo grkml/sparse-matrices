@@ -1,5 +1,5 @@
-# sparse-matrices
-## Background
+# Sparse Matrices
+Background Info Placeholder
 ## Real World Applications
 #### Application 1
 Placeholder Text

@@ -4,7 +4,7 @@ import abstract_data_type.*;
 
 public class App
 {
-   final static int MAT_SIZE = 1000000;
+   final static int MAT_SIZE = 10;
 
    public static void main(String[] args) throws Exception
    {
@@ -13,16 +13,17 @@ public class App
       SparseMat<Double> mat
             = new SparseMat<Double>(MAT_SIZE, MAT_SIZE, 0.);
 
-      mat.set(5,6, 56.0);
-      mat.set(4,5, 45.0);
-      mat.set(10,11, 9911.00);
-      mat.set(999999,999999, 9911.00);
+      mat.set(0,0, 0.1);
+      mat.set(0,1, 0.2);
+      mat.set(0,2, 0.3);
+      mat.set(0,3, 0.4);
 
-      System.out.println(mat.get(5,6));
-      System.out.println(mat.get(4,5));
-      System.out.println(mat.get(9,1));
-      System.out.println(mat.get(999999,999999));
+      // System.out.println(mat.get(5,6));
+      // System.out.println(mat.get(4,5));
+      // System.out.println(mat.get(9,1));
+      // System.out.println(mat.get(99,99));
 
+      mat.showMatrix();
 
       // test mutators
 //      for (k = 0; k < 10; k++)

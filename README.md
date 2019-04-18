@@ -2,7 +2,9 @@
 ## Background
 ## Real World Applications
 #### Application 1
+Placeholder Text
 #### Application 2
+Placeholder Text
 ## Projects in this Repository
 This repository contains 2 versions of the subset sum problem:
 * [Sparse Matrix](#)<br />Placeholder Text
@@ -15,7 +17,7 @@ Gradle 5.4 requires [Java 8](https://www.oracle.com/technetwork/java/javaee/down
 ## Usage
 Running both projects:
 ```
-$ git clone https://github.com/gurkamalpsc/sparse-matrices.git && cd subset-sum-problem && ./gradlew run
+$ git clone https://github.com/gurkamalpsc/sparse-matrices.git && cd sparse-matrices && ./gradlew run
 ```
 ## Built With
 * [IntelliJ Idea CE](https://www.jetbrains.com/idea/) - Java & Kotlin IDE

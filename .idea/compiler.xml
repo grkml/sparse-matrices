@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="sparse-matrices.sparse-matrix-cloneable.main" target="1.8" />
+      <module name="sparse-matrices.sparse-matrix-cloneable.test" target="1.8" />
+      <module name="sparse-matrices.sparse-matrix.main" target="1.8" />
+      <module name="sparse-matrices.sparse-matrix.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

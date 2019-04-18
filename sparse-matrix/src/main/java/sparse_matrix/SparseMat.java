@@ -36,31 +36,78 @@ public class SparseMat<E>
    {
       if (r > numRows -1 || r < 1 || c > numCols - 1 || c < 1)
          throw new IndexOutOfBoundsException("invalid matrix indices");
-      for (int i = 0; i < rows.get(r).size(); i++)
+         
+         
+         
+         
+         
+      FHlinkedList<MatNode> row = rows.get(r);
+      
+      ListIterator<MatNode> rowIterator = row.listIterator();
+      
+      MatNode nextNode;
+      while (rowIterator.hasNext());
       {
-         MatNode testNode = rows.get(r).listIterator().next();
-         if (testNode.col == c)
-            return testNode.data;
+         nextNode = rowIterator.next();
+         if (nextNode.col == c)
+            return nextNode.data;
       }
+         
+         
+         
+      // for (int i = 0; i < rows.get(r).size(); i++)
+      // {
+      //    MatNode testNode = rows.get(r).listIterator().next();
+      //    if (testNode.col == c)
+      //       return testNode.data;
+      // }
       return defaultVal;
    }
 
    boolean set(int r, int c, E x)
    {
-      if (r > numRows -1 || r < 1 || c > numCols - 1 || c < 1)
+      if (r > numRows -1 || r < 0 || c > numCols - 1 || c < 0)
          return false;
       
       FHlinkedList<MatNode> row = rows.get(r);
-      
-      // remove old data
-      E oldData = get(r, c);
-      if (oldData != null)
-         row.remove(new MatNode(c, oldData));
-      
-      // add new data
+
+      // don't add default values
       if (x == defaultVal)
+      {
+         System.out.println("DEFAULT VALUE Trying to be added " + x + " with column " + c + " as the FIRST ELEMENT in row " + r);
          return true;
-      return rows.get(r).add(new MatNode(c, x));
+      }
+         
+      // row r is empty
+      if (row.size() == 0) 
+      {
+         System.out.println("Adding " + x + " with column " + c + " as the FIRST ELEMENT in row " + r);
+         return row.add(new MatNode(c, x));
+      }
+         
+      // row r is not empty - traverse list and find a spot
+      ListIterator<MatNode> rowIterator = row.listIterator();
+      while (rowIterator.hasNext())
+      {
+         MatNode nextNode = rowIterator.next();
+         if ( c < nextNode.col)
+         {
+            try
+            { 
+               System.out.println("Adding " + x + " with column " + c + " in the ITERATOR in row " + r);
+               rowIterator.add(new MatNode(c, x));
+               return true;
+            }
+            catch (Exception e)
+            { 
+               return false; 
+            }
+         }
+      }
+      
+      // c is larger than any other MatNode.col - add at then end
+      System.out.println("Adding " + x + " with column " + c + " at the END OF THE row " + r);
+      return row.add(new MatNode(c, x));
    }
 
    void clear()

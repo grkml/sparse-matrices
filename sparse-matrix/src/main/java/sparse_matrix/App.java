@@ -4,7 +4,7 @@ import abstract_data_type.*;
 
 public class App
 {
-   final static int MAT_SIZE = 10000;
+   final static int MAT_SIZE = 1000;
 
    public static void main(String[] args) throws Exception
    {
@@ -15,7 +15,7 @@ public class App
 
       mat.set(5,6, 56.0);
       mat.set(4,5, 45.0);
-      mat.set(10,111, 9911.00);
+      mat.set(10,11, 9911.00);
 
       System.out.println(mat.get(5,6));
       System.out.println(mat.get(4,5));

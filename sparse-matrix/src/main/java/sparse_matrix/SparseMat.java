@@ -52,7 +52,9 @@ public class SparseMat<E>
       {
          rows.add(new FHlinkedList<MatNode>());
          for (int c = 0; c < numCols; c++)
-            rows.get(r).add(new MatNode(c, defaultVal));
+            rows.get(r).push(new MatNode(c, defaultVal));
+            //rows.get(r).set(c, new MatNode(c, defaultVal));
+            //rows.get(r).set(new MatNode(c, defaultVal));
       }
    }
 
@@ -63,7 +65,7 @@ public class SparseMat<E>
 
    boolean set(int r, int c, E x)
    {
-      try { rows.get(r).get(c).data = x; }
+      try { rows.get(r).set(c, new MatNode(c, x)); }
       catch (Exception e) { return false; }
       return true;
    }

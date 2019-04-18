@@ -4,8 +4,8 @@
 #### Application 1
 #### Application 2
 ## This Repository
-#### * [```sparse-matrix```](https://github.com/gurkamalpsc/sparse-matrices/tree/master/sparse-matrix/src/main/java/sparse_matrix)
-#### * [```sparse-matrix-cloneable```](https://github.com/gurkamalpsc/sparse-matrices/tree/master/sparse-matrix-cloneable/src/main/java/sparse_matrix_cloneable)
+* [```sparse-matrix```](https://github.com/gurkamalpsc/sparse-matrices/tree/master/sparse-matrix/src/main/java/sparse_matrix)
+* [```sparse-matrix-cloneable```](https://github.com/gurkamalpsc/sparse-matrices/tree/master/sparse-matrix-cloneable/src/main/java/sparse_matrix_cloneable)
 ## Running the Code
 #### Prerequesites
 * [Java 8](https://www.oracle.com/technetwork/java/javaee/downloads/jdk8-downloads-2133151.html) - Gradle 5.4 requires Java 8 or later to run.

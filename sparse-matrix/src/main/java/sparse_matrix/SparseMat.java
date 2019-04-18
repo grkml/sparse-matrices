@@ -3,6 +3,8 @@ package sparse_matrix;
 import abstract_data_type.FHarrayList;
 import abstract_data_type.FHlinkedList;
 
+import java.util.ListIterator;
+
 public class SparseMat<E>
 {
    protected int numRows, numCols;
@@ -51,23 +53,23 @@ public class SparseMat<E>
       for (int r = 0; r < numRows; r++)
       {
          rows.add(new FHlinkedList<MatNode>());
-         for (int c = 0; c < numCols; c++)
-            rows.get(r).push(new MatNode(c, defaultVal));
-            //rows.get(r).set(c, new MatNode(c, defaultVal));
-            //rows.get(r).set(new MatNode(c, defaultVal));
       }
    }
 
    E get(int r, int c)
    {
-      return rows.get(r).get(c).data;
+      for (int i = 0; i < rows.get(r).size(); i++)
+      {
+         MatNode node = rows.get(r).listIterator().next();
+         if (node.col == c)
+            return node.data;
+      }
+      return defaultVal;
    }
 
    boolean set(int r, int c, E x)
    {
-      try { rows.get(r).set(c, new MatNode(c, x)); }
-      catch (Exception e) { return false; }
-      return true;
+      return rows.get(r).add(new MatNode(c, x));
    }
 
    void clear()

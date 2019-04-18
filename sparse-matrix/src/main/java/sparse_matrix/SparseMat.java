@@ -7,56 +7,7 @@ public class SparseMat<E>
 {
    protected int numRows, numCols;
    protected E defaultVal;
-   protected FHarrayList<FHlinkedList<MatNode>> rowVectors;
-
-   // constructor
-   public SparseMat(int numRows, int numCols, E defaultVal)
-   {
-      this.numRows = numRows;
-      this.numCols = numCols;
-      this.defaultVal = defaultVal;
-      allocateEmptyMatrix();
-   }
-
-   private void allocateEmptyMatrix()
-   {
-      // allocate rows
-      rowVectors = new FHarrayList<FHlinkedList<MatNode>>(numRows);
-      for (int rowVectorIndex = 0; rowVectorIndex < numRows; rowVectorIndex++)
-      {
-         FHlinkedList<MatNode> nodesInRowVector = new FHlinkedList<MatNode>();
-
-         // allocate nodes in each row
-         for (int colNum = 0; colNum < numCols; colNum++)
-         {
-            MatNode node = new MatNode(colNum, defaultVal);
-            nodesInRowVector.add(node);
-         }
-         rowVectors.add(rowVectorIndex, nodesInRowVector);
-      }
-   }
-
-   E get(int r, int c)
-   {
-      return rowVectors.get(r).get(c).data;
-   }
-
-   boolean set(int r, int c, E x)
-   {
-      try { rowVectors.get(r).get(c).data = x; }
-      catch (Exception e) { return false; }
-      return true;
-   }
-
-   void clear()
-   {
-      for (int rowVectorIndex = 0; rowVectorIndex < numRows; rowVectorIndex++)
-         rowVectors.get(rowVectorIndex).clear();
-   }
-
-//   void showSubSquare(int start, int size)
-//   {
-//   }
+   protected FHarrayList<FHlinkedList<MatNode>> rows;
 
    // protected enables us to safely make col/data public
    protected class MatNode implements Cloneable
@@ -84,4 +35,46 @@ public class SparseMat<E>
          return (Object) newObject;
       }
    }
+
+   // constructor
+   public SparseMat(int numRows, int numCols, E defaultVal)
+   {
+      this.numRows = numRows;
+      this.numCols = numCols;
+      this.defaultVal = defaultVal;
+      allocateEmptyMatrix();
+   }
+
+   private void allocateEmptyMatrix()
+   {
+      rows = new FHarrayList<FHlinkedList<MatNode>>();
+      for (int r = 0; r < numRows; r++)
+      {
+         rows.add(new FHlinkedList<MatNode>());
+         for (int c = 0; c < numCols; c++)
+            rows.get(r).add(new MatNode(c, defaultVal));
+      }
+   }
+
+   E get(int r, int c)
+   {
+      return rows.get(r).get(c).data;
+   }
+
+   boolean set(int r, int c, E x)
+   {
+      try { rows.get(r).get(c).data = x; }
+      catch (Exception e) { return false; }
+      return true;
+   }
+
+   void clear()
+   {
+      for (int r = 0; r < numRows; r++)
+         rows.get(r).clear();
+   }
+
+//   void showSubSquare(int start, int size)
+//   {
+//   }
 }

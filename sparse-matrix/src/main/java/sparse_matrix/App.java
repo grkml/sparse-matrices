@@ -12,6 +12,15 @@ public class App
       int k;
       SparseMat<Integer> mat
             = new SparseMat<Integer>(MAT_SIZE, MAT_SIZE, 0);
+            
+            
+      mat.set(5,5, 50);
+      mat.set(5,9, 50);
+      mat.set(7,5, 50);
+      mat.set(9,5, 50);
+      mat.set(0,0, 50);
+      
+      mat.showSubSquare(0,10);
 
 
 

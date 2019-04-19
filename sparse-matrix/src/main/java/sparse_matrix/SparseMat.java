@@ -63,7 +63,7 @@ public class SparseMat<E>
       if (r > numRows -1 || r < 0 || c > numCols - 1 || c < 0)
          throw new IndexOutOfBoundsException("invalid matrix indices");
          
-      // Iterate through list and node at column c
+      // iterate through list and node at column c
       ListIterator<MatNode> rowIterator = rows.get(r).listIterator();
       MatNode nextNode;
       while (rowIterator.hasNext())
@@ -80,16 +80,16 @@ public class SparseMat<E>
       if (r > numRows -1 || r < 0 || c > numCols - 1 || c < 0)
          return false;
       
-      // Keep matrix sparse without defaultVal
+      // keep matrix sparse without defaultVal
       if (x == defaultVal)
          return true;
       
-      // Add new node to empty list
+      // add new node to empty list
       FHlinkedList<MatNode> row = rows.get(r);
       if (row.size() == 0)
          return row.add(new MatNode(c, x));
       
-      // Iterate through existing list to keep it sorted
+      // iterate through existing list to keep it sorted
       ListIterator<MatNode> rowIterator = row.listIterator();
       int nextNodeCol;
       while (rowIterator.hasNext())
@@ -99,7 +99,7 @@ public class SparseMat<E>
          {
             try
             { 
-               // Overwrite pre-existing node
+               // overwrite pre-existing node
                rowIterator.set(new MatNode(c, x)); 
                return true;
             }
@@ -113,7 +113,7 @@ public class SparseMat<E>
          {
             try
             {
-               // Add new node before next()
+               // add new node before next()
                rowIterator.add(new MatNode(c, x));
                return true;
             }
@@ -124,10 +124,10 @@ public class SparseMat<E>
          }
       }
       
-      // Add new node at the end if not added yet
+      // add new node at the end if not added yet
       return row.add(new MatNode(c, x)); // Add new new at the end;
    }
-
+   
    void clear()
    {
       for (int i = 0; i < numRows; i++)
@@ -137,154 +137,18 @@ public class SparseMat<E>
    void showSubSquare(int start, int size) throws IllegalArgumentException
    {
       if (start < 0 || size < 0 
-            || start + size > numCols - 1 || start + size > numRows - 1)
+            || start + size > numCols || start + size > numRows)
          throw new IllegalArgumentException("invalid subSquare dimensions");
          
-         
+      int i, j;
+      
+      for (i = start; i < start + size; i++)
+      {
+         for(j = start; j < start + size; j++)
+         {
+            System.out.print(get(i, j).toString() + "    ");
+         }
+         System.out.print("\n");
+      }
    }
-      
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-   // void showSubSquare(int start, int size) throws IllegalArgumentException
-   // {
-   //    // if (start < 1 || size < 1 
-   //    //       || start + size > numCols - 1 || start + size > numRows -1)
-   //    //    throw new IllegalArgumentException("invalid subSquare dimensions");
-
-   //    sortRow(row);
-   //    StringBuilder rowString = new StringBuilder();
-      
-   //    for (int i = 0; i <numCols; i++)
-   //    {
-   //       MatNode testNode = row.listIterator().next();
-   //       if (testNode.col == i)
-   //          rowString.append("  " + testNode.data.toString() +"  ");
-   //       else
-   //          rowString.append("  " + defaultVal.toString() +"  ");
-   //    }
-   // }
-   
-   
-   
-   
-   
-   
-   
-   // void showMatrix()
-   // {
-   //    StringBuilder rowString = new StringBuilder();
-   //    for (int i = 0; i < rows.size(); i++)
-   //    {
-   //       FHlinkedList<MatNode> row = rows.get(i);
-   //       sortRow(row);
-         
-   //     // rowString.setLength(0);
-         
-   //       for (int j = 0; j < numCols; j++)
-   //       {
-   //          while(row.listIterator().hasNext()) 
-   //          {
-   //             MatNode nextNode = row.listIterator().next();
-   //             for (int k = j; k < nextNode.col + 1; k++)
-   //                System.out.print("  " + defaultVal.toString() +"  ");
-   //             System.out.print("  " + nextNode.data.toString() +"  ");
-   //          }
-   //          System.out.print("  " + defaultVal.toString() + "  ");
-   //       }
-         
-   //       System.out.println("\n");
-   //    }
-   // }
-   
-   // public void sortRow(FHlinkedList<MatNode> row)
-   // {
-   //    Collections.sort(row, new MatNodeComparator());
-   // }
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   // public static void printRow(FHlinkedList<MatNode> row, int numCols)
-   // {
-   //    sortRow(row);
-   //    StringBuilder rowString = new StringBuilder();
-      
-   //    for (int i = 0; i <numCols; i++)
-   //    {
-   //       MatNode testNode = row.listIterator().next();
-   //       if (testNode.col == i)
-   //          rowString.append("  " + testNode.data.toString() +"  ");
-   //       else
-   //          rowString.append("  " + defaultVal.toString() +"  ");
-   //    }
-      
-   //    System.out.println(rowString.toString());
-   // }
-      
-   
-   
-
-
-//    // protected enables us to safely make col/data public
-//    protected class MatNode implements Cloneable
-//    {
-//       public int col;
-//       public E data;
-
-//       // we need a default constructor for lists
-//       MatNode()
-//       {
-//          col = 0;
-//          data = null;
-//       }
-
-//       MatNode(int cl, E dt)
-//       {
-//          col = cl;
-//          data = dt;
-//       }
-
-//       public Object clone() throws CloneNotSupportedException
-//       {
-//          // shallow copy
-//          MatNode newObject = (MatNode)super.clone();
-//          return (Object) newObject;
-//       }
-//    }
-   
-//    class MatNodeComparator implements Comparator<MatNode>
-//    {
-//       @Override
-//       public int compare(MatNode node1, MatNode node2) 
-//       {
-//          if(node1.col < node2.col)
-//             return 1;
-//          return -1;
-//       }
-//    }
-// }

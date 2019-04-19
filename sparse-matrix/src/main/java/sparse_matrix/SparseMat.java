@@ -91,7 +91,7 @@ public class SparseMat<E>
       
       // Iterate through existing list to keep it sorted
       ListIterator<MatNode> rowIterator = row.listIterator();
-      int nodeColNode;
+      int nextNodeCol;
       while (rowIterator.hasNext())
       {
          nextNodeCol = rowIterator.next().col;

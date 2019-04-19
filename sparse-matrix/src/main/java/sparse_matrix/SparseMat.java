@@ -91,7 +91,7 @@ public class SparseMat<E>
       
       // Iterate through existing list to keep it sorted
       ListIterator<MatNode> rowIterator = row.listIterator();
-      int nodeCol;
+      int nodeColNode;
       while (rowIterator.hasNext())
       {
          nextNodeCol = rowIterator.next().col;
@@ -133,6 +133,35 @@ public class SparseMat<E>
       for (int i = 0; i < numRows; i++)
          rows.get(i).clear();
    }
+   
+   void showSubSquare(int start, int size) throws IllegalArgumentException
+   {
+      if (start < 0 || size < 0 
+            || start + size > numCols - 1 || start + size > numRows - 1)
+         throw new IllegalArgumentException("invalid subSquare dimensions");
+         
+         
+   }
+      
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
 
    // void showSubSquare(int start, int size) throws IllegalArgumentException
    // {
@@ -159,36 +188,36 @@ public class SparseMat<E>
    
    
    
-   void showMatrix()
-   {
-      StringBuilder rowString = new StringBuilder();
-      for (int i = 0; i < rows.size(); i++)
-      {
-         FHlinkedList<MatNode> row = rows.get(i);
-         sortRow(row);
+   // void showMatrix()
+   // {
+   //    StringBuilder rowString = new StringBuilder();
+   //    for (int i = 0; i < rows.size(); i++)
+   //    {
+   //       FHlinkedList<MatNode> row = rows.get(i);
+   //       sortRow(row);
          
-        // rowString.setLength(0);
+   //     // rowString.setLength(0);
          
-         for (int j = 0; j < numCols; j++)
-         {
-            while(row.listIterator().hasNext()) 
-            {
-               MatNode nextNode = row.listIterator().next();
-               for (int k = j; k < nextNode.col + 1; k++)
-                  System.out.print("  " + defaultVal.toString() +"  ");
-               System.out.print("  " + nextNode.data.toString() +"  ");
-            }
-            System.out.print("  " + defaultVal.toString() + "  ");
-         }
+   //       for (int j = 0; j < numCols; j++)
+   //       {
+   //          while(row.listIterator().hasNext()) 
+   //          {
+   //             MatNode nextNode = row.listIterator().next();
+   //             for (int k = j; k < nextNode.col + 1; k++)
+   //                System.out.print("  " + defaultVal.toString() +"  ");
+   //             System.out.print("  " + nextNode.data.toString() +"  ");
+   //          }
+   //          System.out.print("  " + defaultVal.toString() + "  ");
+   //       }
          
-         System.out.println("\n");
-      }
-   }
+   //       System.out.println("\n");
+   //    }
+   // }
    
-   public void sortRow(FHlinkedList<MatNode> row)
-   {
-      Collections.sort(row, new MatNodeComparator());
-   }
+   // public void sortRow(FHlinkedList<MatNode> row)
+   // {
+   //    Collections.sort(row, new MatNodeComparator());
+   // }
    
    
    
@@ -221,41 +250,41 @@ public class SparseMat<E>
    
 
 
-   // protected enables us to safely make col/data public
-   protected class MatNode implements Cloneable
-   {
-      public int col;
-      public E data;
+//    // protected enables us to safely make col/data public
+//    protected class MatNode implements Cloneable
+//    {
+//       public int col;
+//       public E data;
 
-      // we need a default constructor for lists
-      MatNode()
-      {
-         col = 0;
-         data = null;
-      }
+//       // we need a default constructor for lists
+//       MatNode()
+//       {
+//          col = 0;
+//          data = null;
+//       }
 
-      MatNode(int cl, E dt)
-      {
-         col = cl;
-         data = dt;
-      }
+//       MatNode(int cl, E dt)
+//       {
+//          col = cl;
+//          data = dt;
+//       }
 
-      public Object clone() throws CloneNotSupportedException
-      {
-         // shallow copy
-         MatNode newObject = (MatNode)super.clone();
-         return (Object) newObject;
-      }
-   }
+//       public Object clone() throws CloneNotSupportedException
+//       {
+//          // shallow copy
+//          MatNode newObject = (MatNode)super.clone();
+//          return (Object) newObject;
+//       }
+//    }
    
-   class MatNodeComparator implements Comparator<MatNode>
-   {
-      @Override
-      public int compare(MatNode node1, MatNode node2) 
-      {
-         if(node1.col < node2.col)
-            return 1;
-         return -1;
-      }
-   }
-}
+//    class MatNodeComparator implements Comparator<MatNode>
+//    {
+//       @Override
+//       public int compare(MatNode node1, MatNode node2) 
+//       {
+//          if(node1.col < node2.col)
+//             return 1;
+//          return -1;
+//       }
+//    }
+// }

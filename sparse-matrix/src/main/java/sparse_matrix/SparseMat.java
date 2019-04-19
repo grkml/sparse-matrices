@@ -12,7 +12,33 @@ public class SparseMat<E>
    private int numRows, numCols;
    private E defaultVal;
    private FHarrayList<FHlinkedList<MatNode>> rows;
+   
+   protected class MatNode implements Cloneable
+   {
+      public int col;
+      public E data;
 
+      // we need a default constructor for lists
+      MatNode()
+      {
+         col = 0;
+         data = null;
+      }
+
+      MatNode(int cl, E dt)
+      {
+         col = cl;
+         data = dt;
+      }
+
+      public Object clone() throws CloneNotSupportedException
+      {
+         // shallow copy
+         MatNode newObject = (MatNode)super.clone();
+         return (Object) newObject;
+      }
+   }
+   
    // constructor
    public SparseMat(int numRows, int numCols, E defaultVal) 
          throws IllegalArgumentException
@@ -34,33 +60,18 @@ public class SparseMat<E>
 
    E get(int r, int c) throws IndexOutOfBoundsException
    {
-      if (r > numRows -1 || r < 1 || c > numCols - 1 || c < 1)
+      if (r > numRows -1 || r < 0 || c > numCols - 1 || c < 0)
          throw new IndexOutOfBoundsException("invalid matrix indices");
          
-         
-         
-         
-         
-      FHlinkedList<MatNode> row = rows.get(r);
-      
-      ListIterator<MatNode> rowIterator = row.listIterator();
-      
+      // Iterate through list and node at column c
+      ListIterator<MatNode> rowIterator = rows.get(r).listIterator();
       MatNode nextNode;
-      while (rowIterator.hasNext());
+      while (rowIterator.hasNext())
       {
          nextNode = rowIterator.next();
          if (nextNode.col == c)
             return nextNode.data;
       }
-         
-         
-         
-      // for (int i = 0; i < rows.get(r).size(); i++)
-      // {
-      //    MatNode testNode = rows.get(r).listIterator().next();
-      //    if (testNode.col == c)
-      //       return testNode.data;
-      // }
       return defaultVal;
    }
 
@@ -69,32 +80,40 @@ public class SparseMat<E>
       if (r > numRows -1 || r < 0 || c > numCols - 1 || c < 0)
          return false;
       
-      FHlinkedList<MatNode> row = rows.get(r);
-
-      // don't add default values
+      // Keep matrix sparse without defaultVal
       if (x == defaultVal)
-      {
-         System.out.println("DEFAULT VALUE Trying to be added " + x + " with column " + c + " as the FIRST ELEMENT in row " + r);
          return true;
-      }
-         
-      // row r is empty
-      if (row.size() == 0) 
-      {
-         System.out.println("Adding " + x + " with column " + c + " as the FIRST ELEMENT in row " + r);
+      
+      // Add new node to empty list
+      FHlinkedList<MatNode> row = rows.get(r);
+      if (row.size() == 0)
          return row.add(new MatNode(c, x));
-      }
-         
-      // row r is not empty - traverse list and find a spot
+      
+      // Iterate through existing list to keep it sorted
       ListIterator<MatNode> rowIterator = row.listIterator();
+      int nodeCol;
       while (rowIterator.hasNext())
       {
-         MatNode nextNode = rowIterator.next();
-         if ( c < nextNode.col)
+         nextNodeCol = rowIterator.next().col;
+         if (c == nextNodeCol)
          {
             try
             { 
-               System.out.println("Adding " + x + " with column " + c + " in the ITERATOR in row " + r);
+               // Overwrite pre-existing node
+               rowIterator.set(new MatNode(c, x)); 
+               return true;
+            }
+            catch (Exception e)
+            { 
+               System.out.println(e);
+               return false; 
+            }
+         }
+         else if (c < nextNodeCol)
+         {
+            try
+            {
+               // Add new node before next()
                rowIterator.add(new MatNode(c, x));
                return true;
             }
@@ -105,9 +124,8 @@ public class SparseMat<E>
          }
       }
       
-      // c is larger than any other MatNode.col - add at then end
-      System.out.println("Adding " + x + " with column " + c + " at the END OF THE row " + r);
-      return row.add(new MatNode(c, x));
+      // Add new node at the end if not added yet
+      return row.add(new MatNode(c, x)); // Add new new at the end;
    }
 
    void clear()

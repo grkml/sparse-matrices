@@ -13,19 +13,19 @@ public class App
       SparseMat<Integer> mat
             = new SparseMat<Integer>(MAT_SIZE, MAT_SIZE, 0);
 
-      mat.set(0,0, 1);
-      mat.set(0,7, 1);
-      mat.set(0,3, 1);
-      mat.set(0,5, 1);
-      
-      mat.set(0,8, 1);
-      
-      mat.set(0,2, 1);
 
-      // System.out.println(mat.get(5,6));
-      // System.out.println(mat.get(4,5));
-      // System.out.println(mat.get(9,1));
-      // System.out.println(mat.get(99,99));
+
+
+
+
+
+
+
+
+
+
+
+
 
       // mat.showMatrix();
 

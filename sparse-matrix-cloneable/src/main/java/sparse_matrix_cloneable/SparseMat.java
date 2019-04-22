@@ -82,7 +82,7 @@ class SparseMat<E>
          return false;
       
       // keep matrix sparse! dont store defaultVal & remove old node at r, c
-      if (x == defaultVal)
+      if (x.equals(defaultVal))
       {
          remove(r, c);
          return true;

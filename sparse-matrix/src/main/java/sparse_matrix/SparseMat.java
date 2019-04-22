@@ -7,12 +7,13 @@ import java.util.ListIterator;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class SparseMat<E>
+class SparseMat<E>
 {
    private int numRows, numCols;
    private E defaultVal;
    private FHarrayList<FHlinkedList<MatNode>> rows;
    
+   // protected enables us to safely make col/data public
    protected class MatNode implements Cloneable
    {
       public int col;
@@ -63,7 +64,7 @@ public class SparseMat<E>
       if (r > numRows -1 || r < 0 || c > numCols - 1 || c < 0)
          throw new IndexOutOfBoundsException("invalid matrix indices");
          
-      // iterate through list and node at column c
+      // iterate through row r and return node at column c
       ListIterator<MatNode> rowIterator = rows.get(r).listIterator();
       MatNode nextNode;
       while (rowIterator.hasNext())
@@ -80,9 +81,12 @@ public class SparseMat<E>
       if (r > numRows -1 || r < 0 || c > numCols - 1 || c < 0)
          return false;
       
-      // keep matrix sparse without defaultVal
+      // keep matrix sparse! dont store defaultVal & remove old node at r, c
       if (x == defaultVal)
+      {
+         remove(r, c);
          return true;
+      }
       
       // add new node to empty list
       FHlinkedList<MatNode> row = rows.get(r);
@@ -123,9 +127,8 @@ public class SparseMat<E>
             }
          }
       }
-      
-      // add new node at the end if not added yet
-      return row.add(new MatNode(c, x)); // Add new new at the end;
+      // add new node at the end
+      return row.add(new MatNode(c, x));
    }
    
    void clear()
@@ -139,16 +142,61 @@ public class SparseMat<E>
       if (start < 0 || size < 0 
             || start + size > numCols || start + size > numRows)
          throw new IllegalArgumentException("invalid subSquare dimensions");
-         
-      int i, j;
-      
+
+      // find width of longest element for formatting
+      int i, j, maxWidth, testWidth;
+      maxWidth = 0;
       for (i = start; i < start + size; i++)
       {
          for(j = start; j < start + size; j++)
          {
-            System.out.print(get(i, j).toString() + "    ");
+            testWidth = get(i, j).toString().length();
+            if (testWidth > maxWidth)
+               maxWidth = testWidth;
+         }
+      }
+      
+      // print the matrix
+      for (i = start; i < start + size; i++)
+      {
+         for(j = start; j < start + size; j++)
+         {
+            System.out.print(String.format("%" + (maxWidth + 2) + "s", 
+                  get(i, j).toString()));
          }
          System.out.print("\n");
       }
+   }
+   
+   private boolean remove(int r, int c)
+   {
+      FHlinkedList<MatNode> row = rows.get(r);
+      
+      // empty list - nothing to remove
+      if (row.size() == 0)
+         return false;
+      
+      // iterate through row and remove node at column c if there is one
+      ListIterator<MatNode> rowIterator = row.listIterator();
+      int nextNodeCol;
+      while (rowIterator.hasNext())
+      {
+         nextNodeCol = rowIterator.next().col;
+         if (c == nextNodeCol)
+         {
+            try
+            { 
+               // remove pre-existing node
+               rowIterator.remove(); 
+               return true;
+            }
+            catch (Exception e)
+            { 
+               System.out.println(e);
+               return false; 
+            }
+         }
+      }
+      return false;
    }
 }

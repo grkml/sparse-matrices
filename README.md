@@ -1,5 +1,5 @@
 # Sparse Matrices
-In numerical analysis, we often come encounter large sparse matrices, where almost all of the elements are 0 or some default value. This behavior is especially common in machine learning applications, and finding an efficient way to represent this data struture in memory is very important. Here is a simple (but small-scale) example of this behavior:
+In numerical analysis, we often encounter large sparse matrices, where almost all of the elements are 0 or some default value. This behavior is especially common in machine learning applications, and finding an efficient way to represent this data struture in memory is very important. Here is a simple (but small-scale) example of this behavior:
 
 ![Sparse Matrix Example](https://github.com/gurkamalpsc/sparse-matrices/blob/master/readme-images/sparse_matrix_example.png)
 ## Real World Applications

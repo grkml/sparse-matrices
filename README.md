@@ -11,12 +11,11 @@ Sometimes artwork or even scientific photography can be respresented as a sparse
 This is a very important field in modern day computer science, as it enables technologies such as Siri, Google Home, and even apps like Grammarly. Often, NLP aims to transform text to a structured format which eventually is represented in an organized sparse matrix. The memory efficient sparsity allows speech and text to be processed and analyzed faster, and this allows great user experiences with NLP-based platforms.
 
 ![NLP](https://github.com/gurkamalpsc/sparse-matrices/blob/master/readme-images/smart_home_devices.jpg)
-Computers only understand and communicate in numbers. As such, in order to be capable of analyzing text, the text first needs to be converted into a form the computer can understand (numbers!)
 
 ## Projects in this Repository
-This repository contains 2 versions of the subset sum problem:
-* [Sparse Matrix](#)<br />Placeholder Text
-* [Sparse Matrix Cloneable](#)<br />Placeholder Text
+This repository contains 2 versions of an abstract data class called SparseMat used to store sparse matrices:
+* [Sparse Matrix](https://github.com/gurkamalpsc/sparse-matrices/blob/master/sparse-matrix/src/main/java/sparse_matrix/SparseMat.java)
+* [Sparse Matrix Cloneable](https://github.com/gurkamalpsc/sparse-matrices/blob/master/sparse-matrix-cloneable/src/main/java/sparse_matrix_cloneable/SparseMat.java)
 ## Prerequesites
 Gradle 5.4 requires [Java 8](https://www.oracle.com/technetwork/java/javaee/downloads/jdk8-downloads-2133151.html) or later to run.
 * Mac<br />```$ brew cask install java8```

@@ -1,17 +1,16 @@
 # Sparse Matrices
 In numerical analysis, we often encounter large sparse matrices, where almost all of the elements are 0 or some default value. This behavior is especially common in machine learning applications, and finding an efficient way to represent this data struture in memory is very important. Here is a simple (but small-scale) example of this behavior:
 
-![Sparse Matrix Example](https://github.com/gurkamalpsc/sparse-matrices/blob/master/readme-images/sparse_matrix_example.png =250x)
+<img src="https://github.com/gurkamalpsc/sparse-matrices/blob/master/readme-images/sparse_matrix_example.png" alt="Sparse Matrix Example" width="100%"/>
 ## Real World Applications
 #### Representing Sparse Images
 Sometimes artwork or even scientific photography can be respresented as a sparse matrix. If most of the pixels in the image are black or some default color, the image's data can be compressed into a sparse-matrix so that redundant data is not stored.
 
-![Sparse Matrix Images](https://github.com/gurkamalpsc/sparse-matrices/blob/master/readme-images/sparse_matrix_images.jpg)
+<img src="https://github.com/gurkamalpsc/sparse-matrices/blob/master/readme-images/sparse_matrix_images.jpg" alt="Sparse Matrix Images" width="100%"/>
 #### Natural Language Processing (NLP)
 This is a very important field in modern day computer science, as it enables technologies such as Siri, Google Home, and even apps like Grammarly. Often, NLP aims to transform text to a structured format which eventually is represented in an organized sparse matrix. The memory efficient sparsity allows speech and text to be processed and analyzed faster, and this allows great user experiences with NLP-based platforms.
 
-![NLP](https://github.com/gurkamalpsc/sparse-matrices/blob/master/readme-images/smart_home_devices.jpg)
-
+<img src="https://github.com/gurkamalpsc/sparse-matrices/blob/master/readme-images/smart_home_devices.jpg" alt="NLP" width="100%"/>
 ## Projects in this Repository
 This repository contains 2 versions of an abstract data class called SparseMat used to store sparse matrices:
 * [Sparse Matrix](https://github.com/gurkamalpsc/sparse-matrices/blob/master/sparse-matrix/src/main/java/sparse_matrix/SparseMat.java)

@@ -3,8 +3,10 @@ In numerical analysis, we often come encounter large sparse matrices, where almo
 
 ![Sparse Matrix Example](https://github.com/gurkamalpsc/sparse-matrices/blob/master/sparse_matrix_example.png)
 ## Real World Applications
-#### Application 1
-Placeholder Text
+#### Representing Sparse Images
+Sometimes artwork or even scientific photography can be respresented as a sparse matrix. If most of the pixels of the image are black or some default color, the image's data can be compressed into a sparse-matrix so that redundant data is not stored for the "sparse" pixels.
+
+![Sparse Matrix Images](https://github.com/gurkamalpsc/sparse-matrices/blob/master/sparse_matrix_images.jpg)
 #### Application 2
 Placeholder Text
 ## Projects in this Repository

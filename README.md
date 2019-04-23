@@ -1,7 +1,7 @@
 # Sparse Matrices
 In numerical analysis, we often encounter large sparse matrices, where almost all of the elements are 0 or some default value. This behavior is especially common in machine learning applications, and finding an efficient way to represent this data struture in memory is very important. Here is a simple (but small-scale) example of this behavior:
 
-![Sparse Matrix Example](https://github.com/gurkamalpsc/sparse-matrices/blob/master/readme-images/sparse_matrix_example.png)
+![Sparse Matrix Example](https://github.com/gurkamalpsc/sparse-matrices/blob/master/readme-images/sparse_matrix_example.png =250x)
 ## Real World Applications
 #### Representing Sparse Images
 Sometimes artwork or even scientific photography can be respresented as a sparse matrix. If most of the pixels in the image are black or some default color, the image's data can be compressed into a sparse-matrix so that redundant data is not stored.

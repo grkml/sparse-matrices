@@ -1,5 +1,6 @@
 # Sparse Matrices
-In numerical analysis, we often come encounter large sparse matrices, where almost all of the elements are 0 or some default value. This behavior is especially common in machine learning applications such as natural language processing, and finding an efficient way to represent this data struture in memory is important. The 10 x 10 Identity matrix is a good simple example of this behavior:<br />
+In numerical analysis, we often come encounter large sparse matrices, where almost all of the elements are 0 or some default value. This behavior is especially common in machine learning applications such as natural language processing, and finding an efficient way to represent this data struture in memory is important. Here is a good simple (but small-scale) example of this behavior:
+
 ![Sparse Matrix Example](https://github.com/gurkamalpsc/sparse-matrices/blob/master/sparse_matrix_example.png)
 ## Real World Applications
 #### Application 1

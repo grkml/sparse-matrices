@@ -4,17 +4,15 @@ import abstract_data_type.*;
 
 public class App
 {
-   final static int MAT_SIZE = 100000;
+   final static int MAT_SIZE = 1000000;
 
    public static void main(String[] args) throws Exception
    {
-      // 100000 x 100000 filled with 0
       int k;
       SparseMat<Double> mat
             = new SparseMat<Double>(MAT_SIZE, MAT_SIZE, 0.);
             
-      System.out.println("--------- " + 
-      "testing set() --------------------------------------------------------");
+      System.out.println("testing set() -------------------------------------");
       for (k = 0; k < 10; k++)
       {
          System.out.println(">> mat.set(" + k + ", " + k + ", " + k*1. + ")\n"
@@ -28,20 +26,17 @@ public class App
                + mat.set(MAT_SIZE, MAT_SIZE, 1.)); // expect false
       System.out.println();
       
-      System.out.println("--------- " + 
-      "print upper left -----------------------------------------------------");
+      System.out.println("print upper left ----------------------------------");
       System.out.println(">> mat.showSubSquare(0, 12)");
       mat.showSubSquare(0, 12);
       System.out.println();
 
-      System.out.println("--------- " + 
-      "print lower right ----------------------------------------------------");
+      System.out.println("print lower right ---------------------------------");
       System.out.println(">> mat.showSubSquare(MAT_SIZE - 13, 12)");
       mat.showSubSquare(MAT_SIZE - 13, 12);
       System.out.println();
       
-      System.out.println("--------- " + 
-      "testing get() --------------------------------------------------------");
+      System.out.println("testing get() -------------------------------------");
       for (k = 0; k < 10; k++)
       {
          System.out.println(">> mat.get(" + k + ", " + k + ")\n" 
@@ -62,8 +57,10 @@ public class App
       }
       System.out.println();
       
-      System.out.println("--------- " + 
-      "testing element overwrite using set() --------------------------------");
+      System.out.println("testing clone() -----------------------------------");
+      System.out.println(">> SparseMat<Double> mat2 " 
+            + "= (SparseMat<Double>)mat.clone()");
+      SparseMat<Double> mat2 = (SparseMat<Double>)mat.clone();
       for (k = 0; k < 10; k++)
       {
          System.out.println(">> mat.set(" + k + ", " + k + ", " + 1. + ")\n"
@@ -73,24 +70,16 @@ public class App
          System.out.println(">> mat.set(" + k + ", " + 4 + ", " + -10. + ")\n" 
                + mat.set(k, 4, -10.));
       }
-      System.out.println();
-      
-      System.out.println("--------- " + 
-      "upper left after 2nd round of set() calls ----------------------------");
       System.out.println(">> mat.showSubSquare(0, 12)");
       mat.showSubSquare(0, 12);
+      System.out.println(">> mat2.showSubSquare(0, 12)");
+      mat2.showSubSquare(0, 12);
       System.out.println();
      
-      System.out.println("--------- " + 
-      "testing clear() ------------------------------------------------------");
+      System.out.println("testing clear() -----------------------------------");
       System.out.println(">> mat.clear()");
       mat.clear();
-      System.out.println();
-     
-      System.out.println("--------- " + 
-      "upper left after clear() ---------------------------------------------");
       System.out.println(">> mat.showSubSquare(0, 12)");
       mat.showSubSquare(0, 12);
-      System.out.println();
    }
 }

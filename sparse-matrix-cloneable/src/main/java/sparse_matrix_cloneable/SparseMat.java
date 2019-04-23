@@ -168,13 +168,6 @@ class SparseMat<E> implements Cloneable
       }
    }
    
-   public Object clone() throws CloneNotSupportedException
-   {
-      return (SparseMat)super.clone();  
-         // SparseMat newObject = (SparseMat)super.clone();
-         // return (Object) newObject;
-   }
-   
    private boolean remove(int r, int c)
    {
       FHlinkedList<MatNode> row = rows.get(r);

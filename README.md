@@ -1,17 +1,6 @@
 # Sparse Matrices
 In numerical analysis, we often come encounter large sparse matrices, where almost all of the elements are 0 or some default value. This behavior is especially common in machine learning applications such as natural language processing, and finding an efficient way to represent this data struture in memory is important. The 10 x 10 Identity matrix is a good simple example of this behavior:<br />
-```
-1  0  0  0  0  0  0  0  0  0
-0  1  0  0  0  0  0  0  0  0
-0  0  1  0  0  0  0  0  0  0
-0  0  0  1  0  0  0  0  0  0
-0  0  0  0  1  0  0  0  0  0
-0  0  0  0  0  1  0  0  0  0
-0  0  0  0  0  0  1  0  0  0
-0  0  0  0  0  0  0  1  0  0
-0  0  0  0  0  0  0  0  1  0
-0  0  0  0  0  0  0  0  0  1
-```
+![Test Image 4](https://github.com/tograh/testrepository/3DTest.png)
 ## Real World Applications
 #### Application 1
 Placeholder Text

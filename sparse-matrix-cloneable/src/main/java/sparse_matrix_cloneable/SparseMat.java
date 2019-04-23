@@ -7,7 +7,7 @@ import java.util.ListIterator;
 import java.util.Collections;
 import java.util.Comparator;
 
-class SparseMat<E>
+class SparseMat<E> implements Cloneable
 {
    private int numRows, numCols;
    private E defaultVal;
@@ -168,6 +168,13 @@ class SparseMat<E>
       }
    }
    
+   public Object clone() throws CloneNotSupportedException
+   {
+      return (SparseMat)super.clone();  
+         // SparseMat newObject = (SparseMat)super.clone();
+         // return (Object) newObject;
+   }
+   
    private boolean remove(int r, int c)
    {
       FHlinkedList<MatNode> row = rows.get(r);
@@ -198,5 +205,25 @@ class SparseMat<E>
          }
       }
       return false;
+   }
+   
+   public Object clone() throws CloneNotSupportedException
+   {
+      SparseMat<E> newSparseMat = 
+            new SparseMat(this.numRows, this.numCols, this.defaultVal);
+            
+      // Clone the row, MatNode by MatNode
+      ListIterator<MatNode> oldRowIterator;
+      FHlinkedList<MatNode> newRow;
+      for(int i = 0; i < newSparseMat.numRows; i++)
+      {
+         oldRowIterator = this.rows.get(i).listIterator();
+         newRow = newSparseMat.rows.get(i);
+         while (oldRowIterator.hasNext())
+         {
+            newRow.add((MatNode) oldRowIterator.next().clone());
+         }
+      }
+      return (Object) newSparseMat;
    }
 }
